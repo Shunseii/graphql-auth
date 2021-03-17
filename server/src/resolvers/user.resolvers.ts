@@ -37,7 +37,7 @@ export default class HelloResolver {
     const user = await UserModel.findOne({ email });
     if (!user) return null;
 
-    const isValid = user.comparePassword(password);
+    const isValid = await user.comparePassword(password);
     if (!isValid) return null;
 
     ctx.req.session.userId = user.id;
