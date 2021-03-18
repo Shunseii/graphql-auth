@@ -1,5 +1,0 @@
-node_modules/
-server/build/
-*.gql
-server/config/development.json
-server/config/production.json
