@@ -11,7 +11,13 @@ import connectRedis from "connect-redis";
 import { redis } from "./redis.js";
 import { connectDB } from "./utils/db.js";
 import UserResolvers from "./resolvers/user.resolvers.js";
-import { COOKIE_AGE, COOKIE_NAME, PORT, SESSION_SECRET } from "./constants.js";
+import {
+  COOKIE_AGE,
+  COOKIE_NAME,
+  FRONT_END_URL,
+  PORT,
+  SESSION_SECRET,
+} from "./constants.js";
 
 declare module "express-session" {
   interface SessionData {
@@ -29,7 +35,7 @@ if (process.env.NODE_ENV === "development") {
   app.use(
     cors({
       credentials: true,
-      origin: "http://localhost:3000",
+      origin: FRONT_END_URL,
     })
   );
 }
@@ -68,7 +74,10 @@ const apolloServer = new ApolloServer({
   context: ({ req, res }: any) => ({ req, res }),
 });
 
-apolloServer.applyMiddleware({ app });
+apolloServer.applyMiddleware({
+  app,
+  cors: false,
+});
 
 app.listen(PORT, async () => {
   console.log(`Server listening on port ${PORT}`);

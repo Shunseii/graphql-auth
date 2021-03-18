@@ -1,5 +1,6 @@
 {
   "mongoURI": "mongdb_uri",
   "port": 4000,
-  "sessionSecret": "abc"
+  "sessionSecret": "abc",
+  "frontEndURL": "front_end_url"
 }
