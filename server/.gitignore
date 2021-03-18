@@ -1,0 +1,5 @@
+/node_modules
+build/
+*.gql
+config/development.json
+config/production.json
